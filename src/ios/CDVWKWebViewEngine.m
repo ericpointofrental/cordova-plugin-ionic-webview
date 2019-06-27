@@ -375,7 +375,7 @@ NSTimer *timer;
 
 -(void) keyboardWillHide:(NSNotification*)notification {
         if (@available(iOS 12.0, *)) {
-            WKWebView *webview = (WKWebView*)_engineWebView;
+            WKWebView *webview = (WKWebView*)self.webView;
             for(UIView* v in webview.subviews) {
                     if ([v isKindOfClass:NSClassFromString(@"WKScrollView")]) {
                     UIScrollView *scrollView = (UIScrollView*)v;

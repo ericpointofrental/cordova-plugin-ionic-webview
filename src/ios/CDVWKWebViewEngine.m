@@ -305,7 +305,7 @@ NSTimer *timer;
 
     [[NSNotificationCenter defaultCenter]
      addObserver:self
-     selector:@selector(keyboardWillHide)
+     selector:@selector(keyboardWillHide:)
      name:UIKeyboardWillHideNotification object:nil];
 
     // [[NSNotificationCenter defaultCenter]

@@ -373,18 +373,15 @@ NSTimer *timer;
 }
 
 
--(void)keyboardWillHide
-{
-    if (@available(iOS 12.0, *)) {
-        timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(keyboardDisplacementFix) userInfo:nil repeats:false];
-        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    }
-}
-
--(void)keyboardWillShow
-{
-    if (timer != nil) {
-        [timer invalidate];
+-(void) keyboardWillHide:(NSNotification*)notification {
+        if (@available(iOS 12.0, *)) {
+            WKWebView *webview = (WKWebView*)_engineWebView;
+            for(UIView* v in webview.subviews) {
+                    if ([v isKindOfClass:NSClassFromString(@"WKScrollView")]) {
+                    UIScrollView *scrollView = (UIScrollView*)v;
+                    [scrollView setContentOffset:CGPointMake(0, 0)];
+            }
+        }
     }
 }
 
